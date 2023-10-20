@@ -26,9 +26,9 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
 
       int N = n/block_size;
       int b = block_size * block_size;
-      double * tempc = (double *) malloc(b*sizeof(double));
-      double * tempa = (double *) malloc(b*sizeof(double));
-      double * tempb = (double *) malloc(b*sizeof(double));
+      double tempa[b];
+      double tempb[b];
+      double tempc[b];
       #pragma omp for
       for(int i=0;i<N;i++){
          for(int j=0;j<N;j++){
@@ -60,8 +60,5 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
          }
       }
       LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
-      free(tempa);
-      free(tempb);
-      free(tempc);
    }
 }
