@@ -59,9 +59,9 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
             }
          }
       }
+      LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
       free(tempa);
       free(tempb);
       free(tempc);
-      LIKWID_MARKER_STOP(MY_MARKER_REGION_NAME);
    }
 }
